@@ -1,5 +1,0 @@
-# Project Description
-Create an interactive walking tour map app where users can add and edit points of interest to help travelers find good things to do and see. The app would be open to anyone to join, use, and edit. The idea is that locals can share points of interest with travelers, or travelers who are learning about a place can share points of interest with other travelers, too. You can look at other peoples’ added points of interest on the map, choose what you want to see, and the app creates a path between the points of interest so you can walk to each one efficiently. The app has a voice guide so you can put in headphones and go from point to point and listen to other people’s descriptions. Each user can add or delete photos and update descriptions.
-
-# Project Documentation
-Stored on Google Drive to protect privacy of collaborators. 
