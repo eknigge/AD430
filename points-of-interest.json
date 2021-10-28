@@ -1,0 +1,24 @@
+{
+    "points-of-interest": [
+     
+        {
+          "properties": {
+            "marker_id": 1,
+            "coordinates": [-122.3481666, 47.6182759],
+            "Title": "Tilikum Place Cafe",
+            "Description" : "European-style bistro & bar offering an eclectic, seasonal menu in a casual, stylish space.",
+            "URL" : "https://firebasestorage.googleapis.com/v0/b/guidewalkertest.appspot.com/o/tilikum.JPG?alt=media&token=85b8c8aa-8413-49e8-98e9-2ccac2e31c05"
+          }},
+
+          {
+            "properties": {
+              "marker_id": 2,
+              "coordinates": [-122.3535054, 47.6206162],
+              "Title": "Pacific Science Center",
+              "Description": "Rotating science exhibits plus laser light shows, a tropical butterfly house & IMAX movie theaters.",
+              "URL" : "https://firebasestorage.googleapis.com/v0/b/guidewalkertest.appspot.com/o/science.JPG?alt=media&token=98f6d9e8-45f3-4516-9f6b-106eba320cb8"
+            }
+
+    }
+]
+}
