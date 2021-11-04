@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
     StyleSheet,
     Text,
@@ -9,15 +9,17 @@ import {
     useWindowDimensions,
     SafeAreaView,
 } from 'react-native';
-
 import { IconButton } from '../components';
 import Firebase from '../config/firebase';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { AuthenticatedUserContext } from '../navigation/AuthenticatedUserProvider';
 import MapView, { Marker } from 'react-native-maps';
 import { useSharedValue } from 'react-native-reanimated';
 import BottomSheet from '../src/BottomSheet';
 import PicturesCarousel from '../src/PicturesCarousel';
 import Overlay from '../src/Overlay';
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Setting a timer']);
 
 const auth = Firebase.auth();
 
@@ -30,6 +32,20 @@ export default function HomeScreen() {
             console.log(error);
         }
     };
+
+    useEffect(() => {
+        console.log('hello from console');
+        const db = Firebase.firestore();
+        // console.log('db = ', db);
+        async function getData() {
+            const collection = await db.collection('PointsOfInterest').get();
+            collection.forEach((doc) => {
+                console.log(doc.data());
+            });
+        }
+        getData();
+    }, []);
+
     const { width, height } = useWindowDimensions();
     const y = useSharedValue(0);
     return (
