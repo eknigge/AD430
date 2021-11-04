@@ -1,13 +1,9 @@
 import * as React from 'react';
-import MapView from 'react-native-maps';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+import Routes from './navigation';
 
 export default function App() {
-    return (
-        <View style={styles.container}>
-            <MapView style={styles.map} />
-        </View>
-    );
+    return <Routes />;
 }
 
 const styles = StyleSheet.create({
