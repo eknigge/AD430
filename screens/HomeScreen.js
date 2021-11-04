@@ -6,12 +6,18 @@ import {
     View,
     Dimensions,
     TouchableOpacity,
+    useWindowDimensions,
+    SafeAreaView,
 } from 'react-native';
 
 import { IconButton } from '../components';
 import Firebase from '../config/firebase';
 import { AuthenticatedUserContext } from '../navigation/AuthenticatedUserProvider';
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
+import { useSharedValue } from 'react-native-reanimated';
+import BottomSheet from '../src/BottomSheet';
+import PicturesCarousel from '../src/PicturesCarousel';
+import Overlay from '../src/Overlay';
 
 const auth = Firebase.auth();
 
@@ -24,9 +30,31 @@ export default function HomeScreen() {
             console.log(error);
         }
     };
+    const { width, height } = useWindowDimensions();
+    const y = useSharedValue(0);
     return (
         <View style={styles.container}>
-            <MapView style={styles.map} />
+            <MapView
+                initialRegion={{
+                    latitude: 47.6205,
+                    longitude: -122.3493,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0922,
+                }}
+                style={styles.map}
+            ></MapView>
+            <Overlay panY={y} />
+
+            <PicturesCarousel panY={y} />
+
+            <BottomSheet panY={y} />
+
+            <SafeAreaView style={StyleSheet.absoluteFill} pointerEvents="none">
+                {/* TODO: figure out how to get this to not block the map 
+                <View style={styles.container}></View>
+                */}
+            </SafeAreaView>
+
             <TouchableOpacity style={styles.overlay}>
                 <StatusBar style="dark-content" />
                 <View style={styles.row}>
@@ -73,7 +101,7 @@ const styles = StyleSheet.create({
     },
     overlay: {
         position: 'absolute',
-        bottom: 50,
+        top: 40,
         padding: 10,
         borderRadius: 10,
         backgroundColor: '#A9A9A9',
