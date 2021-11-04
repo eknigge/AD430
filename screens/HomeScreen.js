@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
     StyleSheet,
     Text,
@@ -32,21 +32,42 @@ export default function HomeScreen() {
             console.log(error);
         }
     };
+    const [markerData, setMarkerData] = useState([]);
+
+    const makeMarkers = (data) => {
+        if (markerData.length > 0) {
+            const allMarkers = data.map((location) => {
+                return (
+                    <Marker
+                        key={location.Title}
+                        coordinate={{
+                            latitude: location.Location.latitude,
+                            longitude: location.Location.longitude,
+                        }}
+                        title={location.Title}
+                        description={location.Description}
+                    />
+                );
+            });
+            return allMarkers;
+        } else {
+            return null;
+        }
+    };
 
     useEffect(() => {
-        console.log('hello from console');
         const db = Firebase.firestore();
-        // console.log('db = ', db);
         async function getData() {
             const collection = await db.collection('PointsOfInterest').get();
+            let result = [];
             collection.forEach((doc) => {
-                console.log(doc.data());
+                result.push(doc.data());
             });
+            setMarkerData(result);
         }
         getData();
     }, []);
 
-    const { width, height } = useWindowDimensions();
     const y = useSharedValue(0);
     return (
         <View style={styles.container}>
@@ -58,7 +79,9 @@ export default function HomeScreen() {
                     longitudeDelta: 0.0922,
                 }}
                 style={styles.map}
-            ></MapView>
+            >
+                {makeMarkers(markerData)}
+            </MapView>
             <Overlay panY={y} />
 
             <PicturesCarousel panY={y} />
