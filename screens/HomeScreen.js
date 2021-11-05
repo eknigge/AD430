@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
     StyleSheet,
     Text,
@@ -9,15 +9,17 @@ import {
     useWindowDimensions,
     SafeAreaView,
 } from 'react-native';
-
 import { IconButton } from '../components';
 import Firebase from '../config/firebase';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { AuthenticatedUserContext } from '../navigation/AuthenticatedUserProvider';
 import MapView, { Marker } from 'react-native-maps';
 import { useSharedValue } from 'react-native-reanimated';
 import BottomSheet from '../src/BottomSheet';
 import PicturesCarousel from '../src/PicturesCarousel';
 import Overlay from '../src/Overlay';
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Setting a timer']);
 
 const auth = Firebase.auth();
 
@@ -30,7 +32,42 @@ export default function HomeScreen() {
             console.log(error);
         }
     };
-    const { width, height } = useWindowDimensions();
+    const [markerData, setMarkerData] = useState([]);
+
+    const makeMarkers = (data) => {
+        if (markerData.length > 0) {
+            const allMarkers = data.map((location) => {
+                return (
+                    <Marker
+                        key={location.Title}
+                        coordinate={{
+                            latitude: location.Location.latitude,
+                            longitude: location.Location.longitude,
+                        }}
+                        title={location.Title}
+                        description={location.Description}
+                    />
+                );
+            });
+            return allMarkers;
+        } else {
+            return null;
+        }
+    };
+
+    useEffect(() => {
+        const db = Firebase.firestore();
+        async function getData() {
+            const collection = await db.collection('PointsOfInterest').get();
+            let result = [];
+            collection.forEach((doc) => {
+                result.push(doc.data());
+            });
+            setMarkerData(result);
+        }
+        getData();
+    }, []);
+
     const y = useSharedValue(0);
     return (
         <View style={styles.container}>
@@ -42,7 +79,9 @@ export default function HomeScreen() {
                     longitudeDelta: 0.0922,
                 }}
                 style={styles.map}
-            ></MapView>
+            >
+                {makeMarkers(markerData)}
+            </MapView>
             <Overlay panY={y} />
 
             <PicturesCarousel panY={y} />
