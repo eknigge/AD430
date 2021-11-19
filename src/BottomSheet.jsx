@@ -75,6 +75,7 @@ export default function BottomSheet({ panY }) {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: -50,
     position: 'absolute',
     top: 0,
     left: 0,
@@ -97,12 +98,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: '400',
-    fontSize: 30,
+    fontSize: 25,
+    marginTop: -10,
   },
   subtitle: {
     fontWeight: '200',
     marginTop: 20,
-    fontSize: 18,
+    fontSize: 16,
     marginBottom: 20,
   },
   fakeContent: {
