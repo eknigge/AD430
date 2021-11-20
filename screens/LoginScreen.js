@@ -82,7 +82,7 @@ export default function LoginScreen({ navigation }) {
             <Button 
                 onPress={onLogin}
                 backgroundColor="#173F5F"
-                title="LOGIN"
+                title="Log In"
                 tileColor="#fff"
                 titleSize={18}
                 containerStyle={{
@@ -90,12 +90,11 @@ export default function LoginScreen({ navigation }) {
                     marginTop: 10,
                 }}
             />
-            <Text></Text>
             <Text style = {styles.signup}
                 onPress={() => navigation.navigate('Signup')}
                 title="Sign up"
             
-            >Don't have an account? Sign Up!</Text>
+            >Don't have an account? Sign Up</Text>
         </View>
     );
 }
