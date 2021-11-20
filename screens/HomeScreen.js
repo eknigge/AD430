@@ -94,7 +94,7 @@ export default function HomeScreen() {
                 */}
             </SafeAreaView>
 
-            <TouchableOpacity style={styles.overlay}>
+            {/* <TouchableOpacity style={styles.overlay}>
                 <StatusBar style="dark-content" />
                 <View style={styles.row}>
                     <Text style={styles.title}>Welcome {user.email}!</Text>
@@ -106,7 +106,7 @@ export default function HomeScreen() {
                     />
                 </View>
                 <Text style={styles.text}>Your UID is: {user.uid} </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
     );
 }
