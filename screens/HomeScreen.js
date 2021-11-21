@@ -32,7 +32,9 @@ export default function HomeScreen() {
             console.log(error);
         }
     };
+
     const [markerData, setMarkerData] = useState([]);
+    const [showBottomSheet, setShowBottomSheet] = useState(false);
 
     const makeMarkers = (data) => {
         if (markerData.length > 0) {
@@ -46,6 +48,9 @@ export default function HomeScreen() {
                         }}
                         title={location.Title}
                         description={location.Description}
+                        onPress={() => {
+                            setShowBottomSheet(true);
+                        }}
                     />
                 );
             });
@@ -79,34 +84,19 @@ export default function HomeScreen() {
                     longitudeDelta: 0.0922,
                 }}
                 style={styles.map}
+                onPress={() => {
+                    setShowBottomSheet(false);
+                }}
             >
                 {makeMarkers(markerData)}
             </MapView>
-            <Overlay panY={y} />
-
-            <PicturesCarousel panY={y} />
-
-            <BottomSheet panY={y} />
-
-            <SafeAreaView style={StyleSheet.absoluteFill} pointerEvents="none">
-                {/* TODO: figure out how to get this to not block the map 
-                <View style={styles.container}></View>
-                */}
-            </SafeAreaView>
-
-            {/* <TouchableOpacity style={styles.overlay}>
-                <StatusBar style="dark-content" />
-                <View style={styles.row}>
-                    <Text style={styles.title}>Welcome {user.email}!</Text>
-                    <IconButton
-                        name="logout"
-                        size={24}
-                        color="#fff"
-                        onPress={handleSignOut}
-                    />
-                </View>
-                <Text style={styles.text}>Your UID is: {user.uid} </Text>
-            </TouchableOpacity> */}
+            {showBottomSheet ? (
+                <>
+                    <Overlay panY={y} />
+                    <PicturesCarousel panY={y} />
+                    <BottomSheet panY={y} />
+                </>
+            ) : null}
         </View>
     );
 }
