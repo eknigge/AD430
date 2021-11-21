@@ -38,7 +38,7 @@ export default function LoginScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <StatusBar style="dark-content" />
-            <Text style={styles.title}>Login</Text>
+            <Text style={styles.title}>GuideWalker</Text>
             <InputField
                 inputStyle={{
                     fontSize: 14,
@@ -46,6 +46,7 @@ export default function LoginScreen({ navigation }) {
                 containerStyle={{
                     backgroundColor: '#fff',
                     marginBottom: 20,
+                    marginTop:20
                 }}
                 leftIcon="email"
                 placeholder="Enter email"
@@ -78,21 +79,22 @@ export default function LoginScreen({ navigation }) {
             {loginError ? (
                 <ErrorMessage error={loginError} visible={true} />
             ) : null}
-            <Button
+            <Button 
                 onPress={onLogin}
-                backgroundColor="#f57c00"
-                title="Login"
+                backgroundColor="#173F5F"
+                title="Log In"
                 tileColor="#fff"
-                titleSize={20}
+                titleSize={18}
                 containerStyle={{
                     marginBottom: 24,
+                    marginTop: 10,
                 }}
             />
-            <RNButton
+            <Text style = {styles.signup}
                 onPress={() => navigation.navigate('Signup')}
-                title="Go to Signup"
-                color="#33cc33"
-            />
+                title="Sign up"
+            
+            >Don't have an account? Sign Up</Text>
         </View>
     );
 }
@@ -100,15 +102,24 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#405580',
+        backgroundColor: '#20639B',
         paddingTop: 50,
         paddingHorizontal: 12,
+       
     },
     title: {
-        fontSize: 24,
-        fontWeight: '600',
+        fontSize: 30,
+        fontWeight: 'bold',
         color: '#fff',
         alignSelf: 'center',
         paddingBottom: 24,
+        marginTop: 50
     },
+    signup: {
+        color: 'white',
+        fontWeight: 'bold',
+        alignSelf: 'center',
+        
+    },
+
 });
