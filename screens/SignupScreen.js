@@ -38,7 +38,7 @@ export default function SignupScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <StatusBar style="dark-content" />
-            <Text style={styles.title}>Create new account</Text>
+            <Text style={styles.title}>GuideWalker</Text>
             <InputField
                 inputStyle={{
                     fontSize: 14,
@@ -46,6 +46,7 @@ export default function SignupScreen({ navigation }) {
                 containerStyle={{
                     backgroundColor: '#fff',
                     marginBottom: 20,
+                    marginTop:20
                 }}
                 leftIcon="email"
                 placeholder="Enter email"
@@ -80,19 +81,20 @@ export default function SignupScreen({ navigation }) {
             ) : null}
             <Button
                 onPress={onHandleSignup}
-                backgroundColor="#33cc33"
-                title="Signup"
+                backgroundColor="#173F5F"
+                title="Create Account"
                 tileColor="#fff"
-                titleSize={20}
+                titleSize={18}
                 containerStyle={{
                     marginBottom: 24,
+                    marginTop: 10,
                 }}
             />
-            <RNButton
+           <Text style = {styles.login}
                 onPress={() => navigation.navigate('Login')}
                 title="Go to Login"
                 color="#f57c00"
-            />
+           >Already have an account? Sign In</Text>
         </View>
     );
 }
@@ -100,15 +102,22 @@ export default function SignupScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#405580',
+        backgroundColor: '#20639B',
         paddingTop: 50,
         paddingHorizontal: 12,
     },
     title: {
-        fontSize: 24,
-        fontWeight: '600',
+        fontSize: 30,
+        fontWeight: 'bold',
         color: '#fff',
         alignSelf: 'center',
         paddingBottom: 24,
+        marginTop: 50
+    },
+    login: {
+        color: 'white',
+        fontWeight: 'bold',
+        alignSelf: 'center',
+        
     },
 });

@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import MarkerList from '../src/MarkerList';
 import { Marker } from 'react-native-maps';
 
+import SignOut from '../src/SignOut';
 
 const Stack = createStackNavigator();
 
@@ -41,7 +42,7 @@ export default function HomeStack() {
         <Drawer.Screen name="Account" component={AccountScreen} />
         <Drawer.Screen name="Create Tour" component={CreateTourScreen} />
         <Drawer.Screen name="Create Marker" component={MarkerList} />
-        <Drawer.Screen name="Sign Out" component={SignOutButton} />
+        <Drawer.Screen name="Log Out" component={SignOut} />
       </Drawer.Navigator>
        
  
