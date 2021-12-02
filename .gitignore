@@ -16,3 +16,6 @@ web-build/
 # environment variables
 *.env
 *.env.local
+
+
+package-lock.json
