@@ -11,3 +11,11 @@ web-build/
 
 # macOS
 .DS_Store
+
+.idea/
+# environment variables
+*.env
+*.env.local
+
+
+package-lock.json

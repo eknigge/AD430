@@ -4,13 +4,13 @@ import * as Speech from 'expo-speech';
 
 export function TextToSpeech() {
   const speak = () => {
-    const textToSay = 'Pike Place Market is a public market in Seattle, Washington, United States. It opened on August 17, 1907, and is one of the oldest continuously operated public farmers markets in the United States. Overlooking the Elliott Bay waterfront on Puget Sound, it serves as a place of business for many small farmers, craftspeople and merchants.';
+    const textToSay = "The Space Needle was built in the Seattle Center for the 1962 World's Fair, which drew over 2.3 million visitors. It was once the tallest structure west of the Mississippi River, standing at 605 feet. The tower is 138 feet wide, and weighs 9,550 short tons";
     Speech.speak(textToSay);
   };
 
   return (
     <View style={styles.container}>
-      <Button title="Start Tour" onPress={speak} />
+      <Button title="Play Audio Tour" onPress={speak} />
     </View>
   );
 }
