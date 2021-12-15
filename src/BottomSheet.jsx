@@ -66,6 +66,7 @@ export default function BottomSheet({ panY }) {
             <Text style={styles.title}>Space Needle</Text>
             <Text style={styles.subtitle}>Located in the Lower Queen Anne neighborhood, it was built in the Seattle Center for the 1962 World's Fair, which drew over 2.3 million visitors. Nearly 20,000 people a day used its elevators during the event.</Text>
             <TextToSpeech />
+            <Button style={styles.tourButton} title="Play Audio Tour"/>
             <View style={styles.fakeContent} />
           </View>
         </SafeAreaView>
